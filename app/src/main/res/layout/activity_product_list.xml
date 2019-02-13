@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/search_line"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:src="@mipmap/ic_menu_back"/>
+        <TextView
+            android:id="@+id/search"
+            android:layout_height="35dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/app_name"
+            style="@style/searchStyle" />
+    </LinearLayout>
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        app:layout_constraintTop_toBottomOf="@id/search_line"
+        android:id="@+id/srl_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/top_extend_container">
+
+        <!--app:srlDrawableProgress="@drawable/plugin_loading"-->
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            app:srlEnableLastTime="false"
+            app:layout_srlSpinnerStyle="FixedBehind"
+            app:srlPrimaryColor="@color/plugin_default_bg_color"
+            app:srlFinishDuration="0"
+            app:srlTextSizeTitle="@dimen/plugin_dp_16"
+            app:srlAccentColor="@color/plugin_text_secondary_color"
+            android:layout_height="wrap_content"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:overScrollMode="never"
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:scrollbars="none" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</android.support.constraint.ConstraintLayout>

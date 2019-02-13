@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="searchStyle">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_margin">@dimen/dp_10</item>
+        <item name="android:drawableStart">@mipmap/search</item>
+        <item name="android:drawablePadding">@dimen/dp_4</item>
+        <item name="android:background">@drawable/search_bg</item>
+    </style>
+</resources>

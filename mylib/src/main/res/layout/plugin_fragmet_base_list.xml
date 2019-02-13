@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--顶部扩展容器 基本列表需要添加顶部栏时使用 -->
+    <FrameLayout
+        android:id="@+id/top_extend_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/dp_10"
+        tools:visibility="visible"
+        android:visibility="gone" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/srl_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_extend_container">
+
+        <!--app:srlDrawableProgress="@drawable/plugin_loading"-->
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            app:srlEnableLastTime="false"
+            app:layout_srlSpinnerStyle="FixedBehind"
+            app:srlPrimaryColor="@color/plugin_default_bg_color"
+            app:srlFinishDuration="0"
+            app:srlTextSizeTitle="@dimen/plugin_dp_16"
+            app:srlAccentColor="@color/plugin_text_secondary_color"
+            android:layout_height="wrap_content"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:overScrollMode="never"
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:scrollbars="none" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</RelativeLayout>

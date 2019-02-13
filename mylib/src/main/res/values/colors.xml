@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="plugin_primary_color">#FF2FA4FF</color>
+    <color name="plugin_default_bg_color">#FFEBEBED</color>
+    <color name="plugin_text_secondary_color">#FF999999</color>
+    <color name="plugin_color_red">#FFFF423E</color>
+    <color name="app_background_color">#FFEEEEEE</color>
+    <color name="app_refresh_tv">#FF4A4A4A</color>
+    <color name="theme_color">#FFCF000D</color>
+    <color name="clr_ff92">#FF9C9C9C</color>
+    <color name="refresh_btn">#FF3296FA</color>
+</resources>
