@@ -16,12 +16,38 @@ android {
 
     }
 
-    buildTypes {
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            storeFile file("qql.jks")
+            storePassword "qqlkey"
+            keyAlias "key"
+            keyPassword "qqlkey"
+        }
+
+        debug {
+            storeFile file("qql.jks")
+            storePassword "qqlkey"
+            keyAlias "key"
+            keyPassword "qqlkey"
         }
     }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
@@ -55,4 +81,6 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.2'
 //    流式布局
     implementation 'com.google.android:flexbox:1.0.0'
+//    图片选择
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
 }

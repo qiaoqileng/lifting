@@ -3,6 +3,23 @@ package com.qql.lifting.mvp.module.entity;
 public class Dic {
     private long id;
     private String displayName;
+    private String preImg;
+
+    public Dic(String displayName,String preImg) {
+        this.displayName = displayName;
+        this.preImg = preImg;
+    }
+
+    public Dic() {
+    }
+
+    public String getPreImg() {
+        return preImg;
+    }
+
+    public void setPreImg(String preImg) {
+        this.preImg = preImg;
+    }
 
     public long getId() {
         return id;

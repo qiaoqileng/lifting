@@ -30,7 +30,7 @@
         android:id="@+id/srl_refresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_below="@id/top_extend_container">
+        android:layout_below="@id/search_line">
 
         <!--app:srlDrawableProgress="@drawable/plugin_loading"-->
         <com.scwang.smartrefresh.layout.header.ClassicsHeader

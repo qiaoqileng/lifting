@@ -15,4 +15,23 @@
         <item name="android:drawablePadding">@dimen/dp_4</item>
         <item name="android:background">@drawable/search_bg</item>
     </style>
+    <style name="picture.linkAge.style" parent="picture.default.style">
+        <!-- Customize your theme here. -->
+        <!--图片列表勾选样式-->
+        <item name="picture.checked.style">@drawable/custom_picture_checkbox_selector</item>
+        <!--开启图片列表勾选数字模式-->
+        <item name="picture.style.checkNumMode">false</item>
+        <!--选择图片样式0/9-->
+        <item name="picture.style.numComplete">true</item>
+        <!--图片列表底部背景色-->
+        <item name="picture.bottom.bg">@color/bar_grey_90</item>
+        <!--预览界面底部背景色-->
+        <item name="picture.ac_preview.bottom.bg">@color/bar_grey_90</item>
+        <!--图片列表预览文字颜色-->
+        <item name="picture.preview.textColor">@color/picture_preview_text_color</item>
+        <!--图片列表已完成文字颜色-->
+        <item name="picture.complete.textColor">@color/picture_preview_text_color</item>
+        <!--预览界面已完成文字颜色-->
+        <item name="picture.ac_preview.complete.textColor">@color/picture_preview_text_color</item>
+    </style>
 </resources>

@@ -3,6 +3,7 @@ package com.qql.lifting.mvp.module.network;
 import com.qql.lifting.mvp.base.Page;
 import com.qql.lifting.mvp.module.entity.BannerBean;
 import com.qql.lifting.mvp.module.entity.Brand;
+import com.qql.lifting.mvp.module.entity.Dic;
 import com.qql.lifting.mvp.module.entity.Product;
 import com.qql.lifting.mvp.module.entity.Shop;
 import com.qql.lifting.mvp.module.entity.SimpleProduct;
@@ -124,6 +125,23 @@ public class TestApi implements ApiService {
             product.setName("Adidas 大头娃娃吃雪糕");
             product.setType("红色 37码");
             value.setModule(product);
+            value.success = true;
+            value.errCode = "0";
+            value.errMessage = "";
+            e.onNext(value);
+            e.onComplete();
+        },BackpressureStrategy.BUFFER);
+    }
+
+    @Override
+    public Flowable<BaseJsonResponse<List<Dic>>> getDicsById(Map<String, String> params) {
+        return Flowable.create(e->{
+            BaseJsonResponse<List<Dic>> value = new BaseJsonResponse<>();
+            List<Dic> dics = new ArrayList<>();
+            dics.add(new Dic("红色","http://f.hiphotos.baidu.com/image/pic/item/09fa513d269759ee50f1971ab6fb43166c22dfba.jpg"));
+            dics.add(new Dic("绿色","http://img4.imgtn.bdimg.com/it/u=958691974,197794884&fm=23&gp=0.jpg"));
+            dics.add(new Dic("白色","http://img2.3lian.com/2014/f2/37/d/39.jpg"));
+            value.setModule(dics);
             value.success = true;
             value.errCode = "0";
             value.errMessage = "";

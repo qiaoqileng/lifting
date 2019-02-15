@@ -2,10 +2,12 @@ package com.qql.lifting.mvp.module.network;
 
 import com.qql.lifting.mvp.base.Page;
 import com.qql.lifting.mvp.module.entity.BannerBean;
+import com.qql.lifting.mvp.module.entity.Dic;
 import com.qql.lifting.mvp.module.entity.Product;
 import com.qql.lifting.mvp.module.entity.SimpleProduct;
 import com.qql.mylib.mvp.module.response.BaseJsonResponse;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
@@ -26,4 +28,8 @@ public interface ApiService {
 
     @GET(Api.GET_PRODUCT_BY_ID)
     Flowable<BaseJsonResponse<Product>> getProductById(@FieldMap Map<String, String> params);
+
+    @GET(Api.GET_DICS_BY_ID)
+    Flowable<BaseJsonResponse<List<Dic>>> getDicsById(@FieldMap Map<String, String> params);
+
 }
