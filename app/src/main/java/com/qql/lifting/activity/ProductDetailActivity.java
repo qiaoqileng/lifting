@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.qql.lifting.R;
 import com.qql.lifting.activity.base.BaseActivity;
 import com.qql.lifting.fragment.SimpleCardFragment;
+import com.qql.lifting.fragment.dialog.DicDialogFragment;
 import com.qql.lifting.impl.GlideImageLoader;
 import com.qql.lifting.mvp.contract.ProductDetailContract;
 import com.qql.lifting.mvp.module.entity.Product;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class ProductDetailActivity extends BaseActivity<ProductDetailContract.View, ProductDetailPresenter> implements ProductDetailContract.View {
     public static final String KEY_PRODUCT_ID = "key_product_id";
@@ -57,6 +59,8 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailContract.Vi
     TextView tvType;
     private List<Fragment> fragments = new ArrayList<>();
     private String[] titles = {"详情","评价"};
+    private DicDialogFragment fragment;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,4 +128,16 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailContract.Vi
         }
     }
 
+    @OnClick({R.id.tv_type,R.id.iv_go})
+    public void type(View v){
+        if (fragment == null) {
+            Fragment _fragment = getSupportFragmentManager().findFragmentByTag("color_type");
+            if (_fragment == null) {
+                fragment = DicDialogFragment.newInstance("颜色规格");
+            } else {
+                fragment = (DicDialogFragment) _fragment;
+            }
+        }
+        fragment.show(getSupportFragmentManager(),"color_type");
+    }
 }

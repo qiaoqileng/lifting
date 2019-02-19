@@ -5,7 +5,7 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
-public class SimpleProduct {
+public class SimpleProduct implements ITagItem{
     @Id(autoincrement = true)
     private Long id;
     private String name;
@@ -43,4 +43,8 @@ public class SimpleProduct {
         this.name = name;
     }
 
+    @Override
+    public String getTagName() {
+        return name;
+    }
 }

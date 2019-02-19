@@ -3,6 +3,8 @@ package com.qql.mylib.fragment.base;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,9 +12,13 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -24,6 +30,9 @@ import java.lang.reflect.Field;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * author xupj
@@ -51,7 +60,29 @@ public abstract class BaseDialogFragment<V,P extends IBasePresenter<V>> extends 
             // 当fragment 隐藏是不再弹出toast
             cancelToast();
         }
+    }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // 设置宽度为屏宽, 靠近屏幕底部。
+        Window win = getDialog().getWindow();
+        if (win == null || getActivity() == null) {
+            return;
+        }
+        // 一定要设置Background，如果不设置，window属性设置无效
+        win.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        WindowManager.LayoutParams params = win.getAttributes();
+        params.gravity = Gravity.BOTTOM;
+        // 使用ViewGroup.LayoutParams，以便Dialog 宽度充满整个屏幕
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        params.height = dm.heightPixels/2;
+        win.setAttributes(params);
     }
 
     @Override
@@ -122,6 +153,24 @@ public abstract class BaseDialogFragment<V,P extends IBasePresenter<V>> extends 
             // 使用懒加载只在当前fragment正要与用户交互的时候才去加载数据
             useLazyLoader();
         }
+
+        Window win = getDialog().getWindow();
+        if (win == null || getActivity() == null) {
+            return;
+        }
+        win.requestFeature(Window.FEATURE_NO_TITLE);
+//        // 一定要设置Background，如果不设置，window属性设置无效
+//        win.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+//
+//        DisplayMetrics dm = new DisplayMetrics();
+//        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+//
+//        WindowManager.LayoutParams params = win.getAttributes();
+//        params.gravity = Gravity.BOTTOM;
+//        // 使用ViewGroup.LayoutParams，以便Dialog 宽度充满整个屏幕
+//        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+//        params.height = dm.heightPixels/2;
+//        win.setAttributes(params);
     }
 
     /**
@@ -219,7 +268,7 @@ public abstract class BaseDialogFragment<V,P extends IBasePresenter<V>> extends 
 
     @Override
     public void showWaiting(boolean cancelable, DialogInterface.OnCancelListener onCancelListener) {
-        if (isDetached() && getActivity() == null){
+        if (isDetached() || getActivity() == null){
             return;
         }
         getActivity().runOnUiThread(() -> {

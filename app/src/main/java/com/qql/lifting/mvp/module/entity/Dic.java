@@ -1,6 +1,6 @@
 package com.qql.lifting.mvp.module.entity;
 
-public class Dic {
+public class Dic implements ITagItem{
     private long id;
     private String displayName;
     private String preImg;
@@ -35,5 +35,10 @@ public class Dic {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    @Override
+    public String getTagName() {
+        return displayName;
     }
 }
