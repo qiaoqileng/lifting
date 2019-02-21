@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import com.qql.lifting.R;
 import com.qql.lifting.activity.base.BaseActivity;
 import com.qql.lifting.fragment.HomeFragment;
+import com.qql.lifting.fragment.MainFragment;
 import com.qql.lifting.fragment.SimpleCardFragment;
 import com.qql.lifting.mvp.contract.MainContract;
 import com.qql.lifting.mvp.module.entity.AppVersion;
@@ -44,7 +45,7 @@ public class MainActivity extends BaseActivity<MainContract.View, MainPresenter>
             }
         }
         fragments.add(new HomeFragment());
-        fragments.add(SimpleCardFragment.getInstance("2"));
+        fragments.add(new MainFragment());
         fragments.add(SimpleCardFragment.getInstance("3"));
 
         tabLayout.setupWithViewPager(viewPager,false);

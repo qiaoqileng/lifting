@@ -1,7 +1,17 @@
 package com.qql.lifting.utils;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
+
+import com.qql.lifting.mvp.module.entity.AppInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -37,6 +47,56 @@ public class ApkUtil {
          PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
          return packageInfo.versionName;
       }catch (Exception e){
+         return "";
+      }
+   }
+
+   public static List<AppInfo> GetAppList(Context context){
+      List<AppInfo> list=new ArrayList<>();
+      PackageManager pm = context.getPackageManager();
+      Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+      mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+      List<ResolveInfo> activities   = pm.queryIntentActivities(mainIntent, 0);
+      for(ResolveInfo info : activities){
+         String packName = info.activityInfo.packageName;
+         if(packName.equals(context.getPackageName())){
+            continue;
+         }
+         AppInfo mInfo = new AppInfo();
+         mInfo.setIco(info.activityInfo.applicationInfo.loadIcon(pm));
+         mInfo.setLabel(info.activityInfo.applicationInfo.loadLabel(pm).toString());
+         mInfo.setPkg(packName);
+         // 为应用程序的启动Activity 准备Intent
+         Intent launchIntent = new Intent();
+         launchIntent.setComponent(new ComponentName(packName,
+                 info.activityInfo.name));
+         mInfo.setIntent(launchIntent);
+         list.add(mInfo);
+      }
+      return list;
+   }
+
+   public static Drawable getIconByPkg(Context context,String pkg) {
+      PackageManager pm = context.getPackageManager();
+      try {
+         return pm.getApplicationIcon(pkg);
+      } catch (PackageManager.NameNotFoundException e) {
+         e.printStackTrace();
+         return null;
+      }
+   }
+
+   public static Intent getIntentByPkg(Context context,String pkg) {
+      PackageManager pm = context.getPackageManager();
+      return pm.getLaunchIntentForPackage(pkg);
+   }
+
+   public static String getNameByPkg(Context context,String pkg){
+      PackageManager pm = context.getPackageManager();
+      try {
+         return pm.getApplicationLabel(pm.getApplicationInfo(pkg,0)).toString();
+      } catch (Exception e) {
+         e.printStackTrace();
          return "";
       }
    }

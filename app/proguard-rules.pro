@@ -324,6 +324,10 @@ public static void createTable(org.greenrobot.greendao.database.Database, boolea
 #-dontskipnonpubliclibraryclasses
 -keep class com.alibaba.fastjson.**{*;}
 -dontwarn com.alibaba.fastjson.**
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context);
+}
 #-keep class * implements java.io.Serializable { *; }
 #-keepattributes *Annotation
 #-keepattributes Signature

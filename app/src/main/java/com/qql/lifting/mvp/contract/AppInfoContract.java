@@ -1,15 +1,15 @@
 package com.qql.lifting.mvp.contract;
 
-import com.qql.lifting.mvp.module.entity.Remind;
+import com.qql.lifting.mvp.module.entity.AppInfo;
+import com.qql.mylib.mvp.base.IBaseListView;
 import com.qql.mylib.mvp.base.IBasePresenter;
 import com.qql.mylib.mvp.base.IBaseView;
 
-public interface RemindAddContract {
-    interface View extends IBaseView {
-        void dealResult(boolean success);
-    }
+import java.util.List;
 
-    interface Presenter extends IBasePresenter<View> {
-        void add(Remind remind);
+public interface AppInfoContract {
+
+    interface Presenter extends IBasePresenter<IBaseListView<AppInfo>> {
+        void getAppInfo();
     }
 }

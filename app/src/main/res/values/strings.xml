@@ -3,4 +3,8 @@
     <string name="search_hint">search product name</string>
     <string name="hot_line">热门推荐</string>
     <string name="history_line">历史</string>
+    <string name="title">标题</string>
+    <string name="content">简要描述</string>
+    <string name="app_info">打卡app</string>
+    <string name="remind_date">提醒时间</string>
 </resources>

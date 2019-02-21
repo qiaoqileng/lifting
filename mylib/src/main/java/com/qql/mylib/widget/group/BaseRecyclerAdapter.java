@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.haibin.calendarview;
+package com.qql.mylib.widget.group;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -27,16 +27,15 @@ import java.util.List;
 /**
  * 基本的适配器
  */
-abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
+@SuppressWarnings("unused")
+public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
 
-    LayoutInflater mInflater;
-    private List<T> mItems;
+    protected LayoutInflater mInflater;
+    protected List<T> mItems;
     private OnItemClickListener onItemClickListener;
     private OnClickListener onClickListener;
-    Context mContext;
 
-    BaseRecyclerAdapter(Context context) {
-        mContext = context;
+   public BaseRecyclerAdapter(Context context) {
         this.mItems = new ArrayList<>();
         mInflater = LayoutInflater.from(context);
         onClickListener = new OnClickListener() {
@@ -64,9 +63,9 @@ abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
         onBindViewHolder(holder, mItems.get(position), position);
     }
 
-    abstract RecyclerView.ViewHolder onCreateDefaultViewHolder(ViewGroup parent, int type);
+    protected abstract RecyclerView.ViewHolder onCreateDefaultViewHolder(ViewGroup parent, int type);
 
-    abstract void onBindViewHolder(RecyclerView.ViewHolder holder, T item, int position);
+    protected abstract void onBindViewHolder(RecyclerView.ViewHolder holder, T item, int position);
 
     @Override
     public int getItemCount() {
@@ -77,7 +76,6 @@ abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
         this.onItemClickListener = onItemClickListener;
     }
 
-    @SuppressWarnings("unused")
     void addAll(List<T> items) {
         if (items != null && items.size() > 0) {
             mItems.addAll(items);
@@ -92,7 +90,6 @@ abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
         }
     }
 
-    @SuppressWarnings("unused")
     final List<T> getItems() {
         return mItems;
     }
@@ -117,5 +114,25 @@ abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter {
 
     interface OnItemClickListener {
         void onItemClick(int position, long itemId);
+    }
+
+    public final void removeItem(T item) {
+        if (this.mItems.contains(item)) {
+            int position = mItems.indexOf(item);
+            this.mItems.remove(item);
+            notifyItemRemoved(position);
+        }
+    }
+
+    protected final void removeItem(int position) {
+        if (this.getItemCount() > position) {
+            this.mItems.remove(position);
+            notifyItemRemoved(position);
+        }
+    }
+
+    protected final void clear(){
+        mItems.clear();
+        notifyDataSetChanged();
     }
 }

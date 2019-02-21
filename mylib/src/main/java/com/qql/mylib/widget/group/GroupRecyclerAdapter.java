@@ -1,9 +1,7 @@
-package com.haibin.calendarviewproject.group;
+package com.qql.mylib.widget.group;
 
 import android.content.Context;
 
-
-import com.haibin.calendarviewproject.base.adapter.BaseRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

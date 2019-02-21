@@ -1,4 +1,4 @@
-package com.haibin.calendarviewproject.group;
+package com.qql.mylib.widget.group;
 
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
