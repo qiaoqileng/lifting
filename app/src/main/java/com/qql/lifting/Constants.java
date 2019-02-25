@@ -19,4 +19,5 @@ public class Constants {
 
     public static final String CACHE_NAME = "lifting";
     public static final int HISTORY_ROWS = 10;
+    public static final String KEY_APP_PKG = "key_app_pkg";
 }

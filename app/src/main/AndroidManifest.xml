@@ -26,5 +26,11 @@
         <activity android:name=".activity.ProductDetailActivity" />
         <activity android:name=".activity.RemindAddActivity" />
         <activity android:name=".activity.AppInfoActivity" />
+
+        <!--<receiver android:name=".broadcast.RemindBroadCast">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="action.broadcast.remind"/>-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
     </application>
 </manifest>

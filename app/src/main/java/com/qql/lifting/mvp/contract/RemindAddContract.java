@@ -6,7 +6,7 @@ import com.qql.mylib.mvp.base.IBaseView;
 
 public interface RemindAddContract {
     interface View extends IBaseView {
-        void dealResult(boolean success);
+        void dealResult(boolean success,Remind remind);
     }
 
     interface Presenter extends IBasePresenter<View> {

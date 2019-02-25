@@ -64,6 +64,9 @@ public class MainActivity extends BaseActivity<MainContract.View, MainPresenter>
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             if (tab != null) {
                 tab.setIcon(res[i]);
+                if (i == 1){
+                    tab.select();
+                }
             }
         }
     }

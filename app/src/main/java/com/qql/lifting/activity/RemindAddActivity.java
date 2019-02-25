@@ -21,6 +21,7 @@ import com.qql.lifting.utils.ApkUtil;
 import com.qql.lifting.utils.DateFormat;
 import com.qql.lifting.utils.LogUtil;
 import com.qql.lifting.utils.ToastUtils;
+import com.qql.lifting.utils.Utils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -112,9 +113,10 @@ public class RemindAddActivity extends BaseActivity<RemindAddContract.View, Remi
     }
 
     @Override
-    public void dealResult(boolean success) {
+    public void dealResult(boolean success,Remind remind) {
         if (success){
             ToastUtils.showShortToast("success");
+            Utils.startRemind(this,remind);
             finish();
         }
     }

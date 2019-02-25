@@ -1,5 +1,6 @@
 package com.qql.lifting.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class MainFragment extends BaseFragment<RemindContract.View, RemindPresenter> implements RemindContract.View {
+    private static final int ADD_REMIND = 1002;
     @BindView(R.id.tv_month_day)
     TextView tvMonthDay;
     @BindView(R.id.tv_year)
@@ -160,8 +162,16 @@ public class MainFragment extends BaseFragment<RemindContract.View, RemindPresen
                 break;
             case R.id.fab_add:
                 //  2019/2/19
-                startActivity(new Intent(getContext(), RemindAddActivity.class));
+                startActivityForResult(new Intent(getContext(), RemindAddActivity.class),ADD_REMIND);
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == ADD_REMIND && resultCode == Activity.RESULT_OK){
+            loadData();// todo 可优化
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

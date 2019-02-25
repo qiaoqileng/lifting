@@ -16,26 +16,27 @@ import butterknife.ButterKnife;
 public class RemindAdapter extends BaseQuickAdapter<Remind, RemindAdapter.Holder> {
 
     public RemindAdapter() {
-        super(R.layout.rv_item_remind);
+        super(R.layout.rv_item_app_info);
     }
 
     @Override
     protected void convert(Holder helper, Remind item) {
-        helper.preImg.setImageDrawable(ApkUtil.getIconByPkg(mContext,item.getPkg()));
-        helper.price.setText(item.getTitle());
-        helper.currType.setText(item.getContent());
+        helper.ivHead.setImageDrawable(ApkUtil.getIconByPkg(mContext, item.getPkg()));
+        helper.title.setText(item.getTitle());
+        helper.content.setText(item.getContent());
     }
 
     class Holder extends BaseViewHolder {
-        @BindView(R.id.pre_img)
-        ImageView preImg;
-        @BindView(R.id.price)
-        TextView price;
-        @BindView(R.id.curr_type)
-        TextView currType;
+        @BindView(R.id.iv_head)
+        ImageView ivHead;
+        @BindView(R.id.title)
+        TextView title;
+        @BindView(R.id.content)
+        TextView content;
+
         public Holder(View view) {
             super(view);
-            ButterKnife.bind(this,view);
+            ButterKnife.bind(this, view);
         }
     }
 }

@@ -1,10 +1,20 @@
 package com.qql.lifting.mvp.module.entity;
 
+import android.app.PendingIntent;
+import android.content.Intent;
+
+import com.qql.lifting.App;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 
 import java.util.Date;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Transient;
+
+import static android.app.PendingIntent.FLAG_CANCEL_CURRENT;
+import static com.qql.lifting.utils.Utils.getRemindBroadCast;
+
 @Entity
 public class Remind {
     @Id(autoincrement=true)
@@ -15,6 +25,8 @@ public class Remind {
     private Date remindDate;
     private Date createDate;
     private String typeName;
+    @Transient
+    private PendingIntent pendingIntent;
 
     @Generated(hash = 1310433252)
     public Remind(Long id, String title, String content, String pkg,
@@ -30,6 +42,13 @@ public class Remind {
 
     @Generated(hash = 1173539496)
     public Remind() {
+    }
+
+    public PendingIntent getPendingIntent() {
+        if (pendingIntent == null){
+            pendingIntent = PendingIntent.getBroadcast(App.getApplication(),id.intValue(),getRemindBroadCast(pkg),FLAG_CANCEL_CURRENT);
+        }
+        return pendingIntent;
     }
 
     public String getTypeName() {

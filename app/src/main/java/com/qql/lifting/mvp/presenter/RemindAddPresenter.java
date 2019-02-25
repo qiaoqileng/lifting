@@ -9,6 +9,6 @@ public class RemindAddPresenter extends BasePresenter<RemindAddContract.View> im
     @Override
     public void add(Remind remind) {
         long id = GreenDaoManager.getDaoSession().getRemindDao().insert(remind);
-        mView.dealResult(id > 0);
+        mView.dealResult(id > 0,remind);
     }
 }

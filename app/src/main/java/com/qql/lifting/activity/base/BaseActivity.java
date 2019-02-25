@@ -11,10 +11,12 @@ import android.support.annotation.StringRes;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.qql.lifting.App;
+import com.qql.lifting.utils.ViewUtils;
 import com.qql.mylib.R;
 import com.qql.mylib.activity.base.UMActivity;
 import com.qql.mylib.mvp.base.IBasePresenter;
@@ -62,6 +64,10 @@ public abstract class BaseActivity<V ,P extends IBasePresenter<V>> extends UMAct
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(useBackNav());
             }
+            mToolbar.setNavigationOnClickListener(v -> {
+                ViewUtils.hideSoftInputFromWindow(v);
+                finish();
+            });
             mToolbar.setOnMenuItemClickListener(this);
         }
         mEmptyView = new EmptyView(this, EmptyView.EMPTY_TYPE);
