@@ -1,6 +1,6 @@
 package com.qql.lifting.mvp.presenter;
 
-import com.qql.lifting.Constants;
+import com.qql.lifting.constant.Constants;
 import com.qql.lifting.db.manager.GreenDaoManager;
 import com.qql.lifting.mvp.base.BaseSubscriber;
 import com.qql.lifting.mvp.base.Page;
@@ -12,9 +12,7 @@ import com.qql.lifting.utils.Utils;
 import com.qql.mylib.mvp.base.BasePresenter;
 import com.qql.mylib.utils.RxUtil;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
     private ApiService apiService = RetrofitFactory.getApiService();

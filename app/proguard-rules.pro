@@ -108,7 +108,6 @@
 -keep class com.tencent.**{*; }
 -keep class com.bm.**{*; }
 
--keepattributes Signature
 -keep class com.qql.lifting.mvp.module.bean.**{*; }
 -keep class com.qql.lifting.mvp.module.response.**{*; }
 
@@ -292,9 +291,6 @@ public static void createTable(org.greenrobot.greendao.database.Database, boolea
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
 
-# Retain generic type information for use by reflection by converters and adapters.
--keepattributes Signature
-
 # Retain service method parameters when optimizing.
 -keepclassmembers,allowshrinking,allowobfuscation interface * {
     @retrofit2.http.* <methods>;
@@ -333,3 +329,17 @@ public static void createTable(org.greenrobot.greendao.database.Database, boolea
 #-keep class retrofit2.** { *; }
 #-keepattributes Signature
 #-keepattributes Exceptions
+
+-keepattributes  EnclosingMethod,Signature
+-dontwarn cn.jpush.**
+-keep class cn.jpush.** { *; }
+
+-dontwarn cn.jiguang.**
+-keep class cn.jiguang.** { *; }
+
+-dontwarn cn.jmessage.**
+-keep class cn.jmessage.**{ *; }
+
+-keepclassmembers class ** {
+    public void onEvent*(**);
+}

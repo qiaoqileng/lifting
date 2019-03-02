@@ -7,11 +7,13 @@ import com.qql.lifting.mvp.module.entity.Dic;
 import com.qql.lifting.mvp.module.entity.Product;
 import com.qql.lifting.mvp.module.entity.Shop;
 import com.qql.lifting.mvp.module.entity.SimpleProduct;
+import com.qql.lifting.mvp.module.entity.User;
 import com.qql.mylib.mvp.module.response.BaseJsonResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -142,6 +144,25 @@ public class TestApi implements ApiService {
             dics.add(new Dic("绿色","http://img4.imgtn.bdimg.com/it/u=958691974,197794884&fm=23&gp=0.jpg"));
             dics.add(new Dic("白色","http://img2.3lian.com/2014/f2/37/d/39.jpg"));
             value.setModule(dics);
+            value.success = true;
+            value.errCode = "0";
+            value.errMessage = "";
+            e.onNext(value);
+            e.onComplete();
+        },BackpressureStrategy.BUFFER);
+    }
+
+    @Override
+    public Flowable<BaseJsonResponse<User>> loginOrRegirst(Map<String, String> params) {
+        return Flowable.create(e->{
+            BaseJsonResponse<User> value = new BaseJsonResponse<>();
+            User user = new User();
+            user.setId(1);
+            user.setEmail(UUID.randomUUID().toString());
+            user.setName(params.get("user.name"));
+            user.setHead_url(params.get("user.head_url"));
+            user.setSid("xxxxx");
+            value.setModule(user);
             value.success = true;
             value.errCode = "0";
             value.errMessage = "";

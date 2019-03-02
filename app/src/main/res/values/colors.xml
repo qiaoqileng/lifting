@@ -5,4 +5,5 @@
     <color name="colorAccent">#FFD81B60</color>
     <color name="tab_txt">#FF333333</color>
     <color name="line">#FF666666</color>
+    <color name="txt_gray">#9D9DA1</color>
 </resources>

@@ -3,4 +3,6 @@
     <string name="search_hint">search product name</string>
     <string name="hot_line">热门推荐</string>
     <string name="history_line">历史</string>
+    <string name="my_order">我的订单</string>
+    <string name="all_order">全部订单</string>
 </resources>

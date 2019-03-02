@@ -12,6 +12,7 @@ public interface LoginContract {
     }
 
     interface Presenter extends IBasePresenter<View> {
-        void login(Map<String,String> params);
+        void login(int type);
+        void getInfo();
     }
 }

@@ -1,10 +1,9 @@
 package com.qql.lifting.db.manager;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.qql.lifting.App;
-import com.qql.lifting.Constants;
+import com.qql.lifting.constant.Constants;
 import com.qql.lifting.db.gen.DaoMaster;
 import com.qql.lifting.db.gen.DaoSession;
 

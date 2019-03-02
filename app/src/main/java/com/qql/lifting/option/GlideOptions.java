@@ -2,6 +2,7 @@ package com.qql.lifting.option;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.qql.lifting.R;
 
@@ -18,5 +19,9 @@ public class GlideOptions {
                 .error(R.mipmap.ic_launcher)
                 .priority(Priority.HIGH)
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
+    }
+
+    public static RequestOptions circleOption(int radius){
+        return defaultOption().transform(new RoundedCorners(radius));
     }
 }

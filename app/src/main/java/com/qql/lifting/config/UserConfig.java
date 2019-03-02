@@ -5,7 +5,11 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 import com.qql.lifting.App;
 import com.qql.lifting.mvp.module.entity.User;
+import com.qql.lifting.utils.LogUtil;
 import com.qql.lifting.utils.PreferencesUtils;
+
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.api.BasicCallback;
 
 public class UserConfig {
     private static final String APP_SHARED_PREFERENCES = "app_user_shared_preferences";
@@ -27,8 +31,25 @@ public class UserConfig {
         }
     }
 
+    public static User getCurrUser(){
+        return user;
+    }
+
     private static void enablePush() {
         // TODO: 2019/1/30 登陆后的操作
+        LogUtil.d("username: " + user.getEmail());
+        JMessageClient.register(user.getEmail(), "123456", new BasicCallback() {
+            @Override
+            public void gotResult(int i, String s) {
+                LogUtil.d("register: "+s);
+                JMessageClient.login(user.getEmail(), "123456", new BasicCallback() {
+                    @Override
+                    public void gotResult(int i, String s) {
+                        LogUtil.d("login: "+s);
+                    }
+                });
+            }
+        });
     }
 
     public static void initUserLoginStatus() {

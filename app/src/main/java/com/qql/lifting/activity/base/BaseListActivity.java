@@ -136,7 +136,7 @@ public abstract class BaseListActivity<data,v, presenter extends IBasePresenter<
     }
 
 
-    protected abstract BaseQuickAdapter<data, BaseViewHolder> initAdapter();
+    protected abstract BaseQuickAdapter<data, ? extends BaseViewHolder> initAdapter();
 
     protected abstract void loadData();
 

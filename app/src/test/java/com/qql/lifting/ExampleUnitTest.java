@@ -2,6 +2,8 @@ package com.qql.lifting;
 
 import org.junit.Test;
 
+import java.util.UUID;
+
 import static org.junit.Assert.*;
 
 /**
@@ -14,4 +16,13 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+    public static void main(String[] args) {
+
+        UUID uuid = UUID.randomUUID();
+
+        System.out.println(uuid);
+
+    }
+
 }

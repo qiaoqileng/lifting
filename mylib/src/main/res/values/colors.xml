@@ -9,4 +9,5 @@
     <color name="theme_color">#FFCF000D</color>
     <color name="clr_ff92">#FF9C9C9C</color>
     <color name="refresh_btn">#FF3296FA</color>
+    <color name="colorPrimaryDark">#FF00574B</color>
 </resources>

@@ -6,5 +6,5 @@ public class Api {
     public static final String GET_HOT = "/api/lifting/product/getHot.action";
     public static final String GET_PRODUCT_BY_ID = "/api/lifting/product/getProductById.action";
     public static final String GET_DICS_BY_ID = "/api/lifting/product/getDicsById.action";
-
+    public static final String LOGIN_OR_REGIRST = "/api/lifting/user/login.action";
 }

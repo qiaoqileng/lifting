@@ -1,4 +1,6 @@
-package com.qql.lifting;
+package com.qql.lifting.constant;
+
+import com.qql.lifting.App;
 
 import java.io.File;
 
