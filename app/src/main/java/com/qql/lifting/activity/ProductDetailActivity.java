@@ -17,11 +17,13 @@ import com.qql.lifting.R;
 import com.qql.lifting.activity.base.BaseActivity;
 import com.qql.lifting.fragment.SimpleCardFragment;
 import com.qql.lifting.fragment.dialog.DicDialogFragment;
+import com.qql.lifting.fragment.dialog.PhotoDialogFragment;
 import com.qql.lifting.impl.GlideImageLoader;
 import com.qql.lifting.mvp.contract.ProductDetailContract;
 import com.qql.lifting.mvp.module.entity.Product;
 import com.qql.lifting.mvp.presenter.ProductDetailPresenter;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +94,10 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailContract.Vi
             banner.setImages(product.getImgs());
             banner.setImageLoader(new GlideImageLoader());
             banner.start();
+            banner.setOnBannerListener(position -> {
+               String img = product.getImgs().get(position);
+                PhotoDialogFragment.getInstance(img).show(getSupportFragmentManager(),"img");
+            });
             tvTitle.setText(product.getName());
             tvLookCount.setText(String.valueOf(product.getLookCount()));
             tvCollectCount.setText(String.valueOf(product.getCollectCount()));

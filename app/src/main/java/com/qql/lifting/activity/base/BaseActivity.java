@@ -10,6 +10,8 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -30,7 +32,7 @@ import butterknife.Unbinder;
 /**
  * Mvp - V BaseActivity基类，封装一些常用方法
  */
-public abstract class BaseActivity<V ,P extends IBasePresenter<V>> extends UMActivity implements IBaseView {
+public abstract class BaseActivity<V ,P extends IBasePresenter<V>> extends UMActivity implements IBaseView, Toolbar.OnMenuItemClickListener {
     protected P mPresenter;
 
     private Unbinder mUnbinder;
@@ -61,11 +63,17 @@ public abstract class BaseActivity<V ,P extends IBasePresenter<V>> extends UMAct
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(useBackNav());
             }
+            mToolbar.setNavigationOnClickListener(v -> finish());
+            mToolbar.setOnMenuItemClickListener(this);
+            mToolbar.setTitle(getCurrTitle());
         }
         mEmptyView = new EmptyView(this, EmptyView.EMPTY_TYPE);
         mErrorView = new NetErrorView(this);
     }
 
+    protected String getCurrTitle() {
+        return getString(R.string.app_name);
+    }
     /**
      * 使用返回导航图标  即标题显示返回按钮
      */
@@ -205,5 +213,10 @@ public abstract class BaseActivity<V ,P extends IBasePresenter<V>> extends UMAct
             waitingDialog.dismiss();
             waitingDialog = null;
         }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        return false;
     }
 }

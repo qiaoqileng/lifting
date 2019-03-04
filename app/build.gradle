@@ -95,6 +95,8 @@ dependencies {
     implementation 'com.google.android:flexbox:1.0.0'
 //    图片选择
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+//    图片展示
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 //    极光
     implementation 'cn.jiguang.sdk:jmessage:2.8.1'  // 此处以JMessage 2.8.1 版本为例。
     implementation 'cn.jiguang.sdk:jcore:1.2.6'  // 此处以JCore 1.2.6 版本为例。
